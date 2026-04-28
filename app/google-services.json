@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "782586866944",
+    "project_id": "grithaul",
+    "storage_bucket": "grithaul.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782586866944:android:22f18ab74f7b442aac57e5",
+        "android_client_info": {
+          "package_name": "com.ian.grithaul"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd3mBQKi_sXxs4JWbe99PgsKSV6G07p5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
