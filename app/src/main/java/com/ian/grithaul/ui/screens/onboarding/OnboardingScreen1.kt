@@ -22,7 +22,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ian.grithaul.navigation.ROUT_LOGIN
 import com.ian.grithaul.navigation.ROUT_ONBOARDING
-import com.ian.grithaul.navigation.ROUT_ONBOARDING1
+import com.ian.grithaul.navigation.ROUT_ONBOARDING2
 import com.ian.grithaul.ui.theme.BackgroundLight
 import com.ian.grithaul.ui.theme.BorderLight
 import com.ian.grithaul.ui.theme.PrimaryGreen
@@ -32,7 +32,7 @@ import com.ian.grithaul.ui.theme.White
 import kotlinx.coroutines.launch
 
 @Composable
-fun OnboardingScreen(navController: NavController) {
+fun OnboardingScreen1(navController: NavController) {
 
     val alphaAnim = remember { Animatable(0f) }
     val scaleAnim = remember { Animatable(0.92f) }
@@ -103,7 +103,7 @@ fun OnboardingScreen(navController: NavController) {
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "📅",
+                    text = "🚛",
                     fontSize = 90.sp,
                     textAlign = TextAlign.Center
                 )
@@ -113,7 +113,7 @@ fun OnboardingScreen(navController: NavController) {
 
             // Title
             Text(
-                text = "Know Your Pickup",
+                text = "Request On Demand",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextPrimary,
@@ -124,7 +124,7 @@ fun OnboardingScreen(navController: NavController) {
 
             // Description
             Text(
-                text = "Stay ahead of collection day. Get notified the night before and confirm your pickup with just one tap.",
+                text = "Need a special collection outside your schedule? Request a pickup anytime and track it from approval to completion.",
                 fontSize = 15.sp,
                 color = TextSecondary,
                 textAlign = TextAlign.Center,
@@ -146,20 +146,20 @@ fun OnboardingScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Dot 1 — active
+                // Dot 1 — inactive
+                Box(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .clip(CircleShape)
+                        .background(BorderLight)
+                )
+                // Dot 2 — active
                 Box(
                     modifier = Modifier
                         .width(24.dp)
                         .height(8.dp)
                         .clip(RoundedCornerShape(4.dp))
                         .background(PrimaryGreen)
-                )
-                // Dot 2 — inactive
-                Box(
-                    modifier = Modifier
-                        .size(8.dp)
-                        .clip(CircleShape)
-                        .background(BorderLight)
                 )
                 // Dot 3 — inactive
                 Box(
@@ -175,7 +175,7 @@ fun OnboardingScreen(navController: NavController) {
             // Next button
             Button(
                 onClick = {
-                    navController.navigate(ROUT_ONBOARDING1)
+                    navController.navigate(ROUT_ONBOARDING2)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -200,6 +200,6 @@ fun OnboardingScreen(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun OnboardingScreenPreview() {
-    OnboardingScreen(rememberNavController())
+fun OnboardingScreen1Preview() {
+    OnboardingScreen1(rememberNavController())
 }

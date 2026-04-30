@@ -1,5 +1,6 @@
 package com.ian.grithaul.ui.screens.onboarding
 
+import android.content.Context
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,7 +24,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ian.grithaul.navigation.ROUT_LOGIN
 import com.ian.grithaul.navigation.ROUT_ONBOARDING
-import com.ian.grithaul.navigation.ROUT_ONBOARDING1
 import com.ian.grithaul.ui.theme.BackgroundLight
 import com.ian.grithaul.ui.theme.BorderLight
 import com.ian.grithaul.ui.theme.PrimaryGreen
@@ -32,8 +33,9 @@ import com.ian.grithaul.ui.theme.White
 import kotlinx.coroutines.launch
 
 @Composable
-fun OnboardingScreen(navController: NavController) {
+fun OnboardingScreen2(navController: NavController) {
 
+    val context = LocalContext.current
     val alphaAnim = remember { Animatable(0f) }
     val scaleAnim = remember { Animatable(0.92f) }
 
@@ -70,6 +72,12 @@ fun OnboardingScreen(navController: NavController) {
         ) {
             TextButton(
                 onClick = {
+                    // Save onboarding complete and go to login
+                    val prefs = context.getSharedPreferences(
+                        "grithaul_prefs",
+                        Context.MODE_PRIVATE
+                    )
+                    prefs.edit().putBoolean("onboarding_complete", true).apply()
                     navController.navigate(ROUT_LOGIN) {
                         popUpTo(ROUT_ONBOARDING) { inclusive = true }
                     }
@@ -103,7 +111,7 @@ fun OnboardingScreen(navController: NavController) {
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "📅",
+                    text = "📊",
                     fontSize = 90.sp,
                     textAlign = TextAlign.Center
                 )
@@ -113,7 +121,7 @@ fun OnboardingScreen(navController: NavController) {
 
             // Title
             Text(
-                text = "Know Your Pickup",
+                text = "Track Everything",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextPrimary,
@@ -124,7 +132,7 @@ fun OnboardingScreen(navController: NavController) {
 
             // Description
             Text(
-                text = "Stay ahead of collection day. Get notified the night before and confirm your pickup with just one tap.",
+                text = "From complaints to completion — monitor every pickup, report issues, and stay informed every step of the way.",
                 fontSize = 15.sp,
                 color = TextSecondary,
                 textAlign = TextAlign.Center,
@@ -146,13 +154,12 @@ fun OnboardingScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Dot 1 — active
+                // Dot 1 — inactive
                 Box(
                     modifier = Modifier
-                        .width(24.dp)
-                        .height(8.dp)
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(PrimaryGreen)
+                        .size(8.dp)
+                        .clip(CircleShape)
+                        .background(BorderLight)
                 )
                 // Dot 2 — inactive
                 Box(
@@ -161,21 +168,32 @@ fun OnboardingScreen(navController: NavController) {
                         .clip(CircleShape)
                         .background(BorderLight)
                 )
-                // Dot 3 — inactive
+                // Dot 3 — active
                 Box(
                     modifier = Modifier
-                        .size(8.dp)
-                        .clip(CircleShape)
-                        .background(BorderLight)
+                        .width(24.dp)
+                        .height(8.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .background(PrimaryGreen)
                 )
             }
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Next button
+            // Get Started button
             Button(
                 onClick = {
-                    navController.navigate(ROUT_ONBOARDING1)
+                    // Save onboarding complete
+                    val prefs = context.getSharedPreferences(
+                        "grithaul_prefs",
+                        Context.MODE_PRIVATE
+                    )
+                    prefs.edit().putBoolean("onboarding_complete", true).apply()
+
+                    // Navigate to login and clear entire onboarding back stack
+                    navController.navigate(ROUT_LOGIN) {
+                        popUpTo(ROUT_ONBOARDING) { inclusive = true }
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -186,7 +204,7 @@ fun OnboardingScreen(navController: NavController) {
                 )
             ) {
                 Text(
-                    text = "Next",
+                    text = "Get Started",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = White
@@ -200,6 +218,6 @@ fun OnboardingScreen(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun OnboardingScreenPreview() {
-    OnboardingScreen(rememberNavController())
+fun OnboardingScreen2Preview() {
+    OnboardingScreen2(rememberNavController())
 }

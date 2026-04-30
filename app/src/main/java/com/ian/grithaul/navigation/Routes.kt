@@ -1,4 +1,16 @@
 package com.ian.grithaul.navigation
 
-const val ROUT_SPLASH = "home"
+const val ROUT_SPLASH = "splash"
 const val ROUT_ONBOARDING = "onboarding"
+const val ROUT_ONBOARDING1 = "onboarding1"
+const val ROUT_ONBOARDING2 = "onboarding2"
+const val ROUT_LOGIN = "login"
+const val ROUT_REGISTER = "register"
+const val ROUT_DRIVER_DASHBOARD = "driver_dashboard"
+const val ROUT_ADMIN_DASHBOARD = "admin_dashboard"
+const val ROUT_PROFILE = "profile"
+const val ROUT_NOTIFICATIONS = "notifications"
+const val ROUT_CONFIRM_PICKUP = "pickup"
+const val ROUT_FEEDBACK = "feedback"
+const val ROUT_DEMAND_REQUEST = "demand_request"
+const val ROUT_RESIDENT_HOME = "resident_home"

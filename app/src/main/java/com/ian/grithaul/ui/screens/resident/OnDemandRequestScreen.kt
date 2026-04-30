@@ -1,4 +1,4 @@
-package com.ian.grithaul.ui.screens.auth
+package com.ian.grithaul.ui.screens.resident
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun RegisterScreen(navController: NavController){
+fun OnDemandRequestScreen(navController: NavController){
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -22,6 +22,6 @@ fun RegisterScreen(navController: NavController){
 
 @Preview(showBackground = true)
 @Composable
-fun RegisterScreenPreview(){
-    RegisterScreen(rememberNavController() )
+fun OnDemandRequestScreenPreview(){
+    OnDemandRequestScreen(rememberNavController() )
 }
