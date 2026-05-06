@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.kotlin.android)
+
 }
 
 android {
@@ -38,6 +40,9 @@ android {
     buildFeatures {
         compose = true
     }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
 
 dependencies {
@@ -59,10 +64,24 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-//Navigation
+    // Navigation
     implementation("androidx.navigation:navigation-runtime-ktx:2.9.4")
     implementation("androidx.navigation:navigation-compose:2.9.4")
 
+    // Material Icons
     implementation("androidx.compose.material:material-icons-extended")
 
+    // Room
+    implementation("androidx.room:room-runtime:2.7.1")
+    implementation("androidx.room:room-ktx:2.7.1")
+    annotationProcessor("androidx.room:room-compiler:2.7.1")
+
+    // Firestore
+    implementation("com.google.firebase:firebase-firestore-ktx:25.1.4")
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.1")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
 }
