@@ -14,6 +14,9 @@ interface PickupDao {
     @Query("SELECT * FROM pickups WHERE status = :status")
     fun getPickupsByStatus(status: String): Flow<List<PickupEntity>>
 
+    @Query("SELECT * FROM pickups WHERE id = :pickupId LIMIT 1")
+    suspend fun getPickupById(pickupId: String): PickupEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPickup(pickup: PickupEntity)
 
@@ -29,4 +32,3 @@ interface PickupDao {
     @Query("DELETE FROM pickups")
     suspend fun clearPickups()
 }
-
