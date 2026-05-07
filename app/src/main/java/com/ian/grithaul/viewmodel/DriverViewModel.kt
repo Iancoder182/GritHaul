@@ -1,7 +1,8 @@
-package com.ian.grithaul.viewmodel
+package com.ian.grithaul.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+<<<<<<< HEAD
 import com.ian.grithaul.data.local.entities.ComplaintEntity
 import com.ian.grithaul.data.local.entities.NotificationEntity
 import com.ian.grithaul.data.local.entities.PickupEntity
@@ -213,3 +214,18 @@ class DriverViewModel : ViewModel() {
     }
 }
 
+=======
+import com.ian.grithaul.data.GritRepository
+import com.ian.grithaul.data.local.entities.PickupEntity
+import kotlinx.coroutines.launch
+
+class DriverViewModel(private val repository: GritRepository) : ViewModel() {
+
+    fun markPickupAsCompleted(pickup: PickupEntity) {
+        viewModelScope.launch {
+            val updated = pickup.copy(status = "Completed")
+            repository.updatePickupStatus(updated)
+        }
+    }
+}
+>>>>>>> 9e52a1125f4e4f4d7cba32232b81fd11a1ab79ec
